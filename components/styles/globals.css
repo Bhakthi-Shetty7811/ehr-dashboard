@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode */
+    --background: 255 255 255;
+    --foreground: 17 24 39;
+
+    --card: 249 250 251;
+    --card-foreground: 17 24 39;
+
+    --primary: 37 99 235;      /* Blue */
+    --primary-foreground: 255 255 255;
+
+    --secondary: 243 244 246;  /* Gray */
+    --secondary-foreground: 17 24 39;
+
+    --success: 34 197 94;      /* Green-500 */
+    --warning: 234 179 8;      /* Yellow-500 */
+    --danger: 239 68 68;       /* Red-500 */
+
+    --border: 229 231 235;
+    --input: 255 255 255;
+    --ring: 37 99 235;
+  }
+
+  .dark {
+    /* Dark mode */
+    --background: 17 24 39;
+    --foreground: 255 255 255;
+
+    --card: 31 41 55;
+    --card-foreground: 255 255 255;
+
+    --primary: 59 130 246;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 55 65 81;
+    --secondary-foreground: 255 255 255;
+
+    --success: 34 197 94;
+    --warning: 250 204 21;
+    --danger: 239 68 68;
+
+    --border: 75 85 99;
+    --input: 31 41 55;
+    --ring: 59 130 246;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* Headings */
+  h1, h2, h3, h4 {
+    @apply font-bold;
+    color: rgb(var(--primary));
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium transition focus:outline-none focus:ring-2 focus:ring-ring shadow-sm;
+  }
+  .btn-primary { @apply bg-primary text-primary-foreground hover:bg-blue-700; }
+  .btn-secondary { @apply bg-secondary text-secondary-foreground hover:bg-gray-300 dark:hover:bg-gray-600; }
+  .btn-success { background-color: rgb(var(--success)); color: white; }
+  .btn-warning { background-color: rgb(var(--warning)); color: black; }
+  .btn-danger { background-color: rgb(var(--danger)); color: white; }
+
+  /* Cards */
+  .card {
+    @apply shadow-md rounded-xl p-6 transition hover:shadow-lg border-l-4;
+    color: rgb(var(--foreground));
+    border-color: rgb(var(--primary));
+    background-color: rgb(var(--card));
+  }
+
+  /* Forms */
+  label {
+    @apply block mb-2 font-medium;
+    color: rgb(var(--primary));
+  }
+
+  input,
+  select,
+  textarea {
+    @apply border border-border p-3 rounded-lg w-full focus:outline-none focus:ring-2 transition;
+    background-color: rgb(var(--input));
+    color: rgb(var(--foreground));
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: rgb(var(--primary));
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: #6b7280;
+  }
+
+  /* Tables */
+  table { @apply w-full border-collapse text-left; }
+  th {
+    @apply border-b px-4 py-2 font-semibold;
+    background-color: rgba(var(--primary), 0.1);
+    color: rgb(var(--primary));
+  }
+  td {
+    @apply border-b px-4 py-2;
+    color: rgb(var(--foreground));
+  }
+  tr:hover {
+    background-color: rgba(var(--primary), 0.05);
+    @apply transition;
+  }
+
+  /* Lists */
+  ul, ol {
+    @apply list-disc list-inside;
+    color: rgb(var(--foreground));
+  }
+  li { @apply py-1; }
+
+  /* Badges */
+  .badge {
+    @apply inline-block px-3 py-1 rounded-full text-sm font-medium;
+  }
+  .badge-success { background-color: rgba(var(--success), 0.15); color: rgb(var(--success)); }
+  .badge-warning { background-color: rgba(var(--warning), 0.15); color: rgb(var(--warning)); }
+  .badge-danger { background-color: rgba(var(--danger), 0.15); color: rgb(var(--danger)); }
+}
+
+
+
+
+
+
+
