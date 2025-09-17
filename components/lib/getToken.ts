@@ -1,5 +1,13 @@
-// lib/getToken.ts
+let cachedToken: { access_token: string; expires_at: number } | null = null;
+
 export async function getToken() {
+  const now = Date.now();
+
+  // Reuse if token is still valid (give 1 min buffer)
+  if (cachedToken && cachedToken.expires_at > now + 60 * 1000) {
+    return cachedToken;
+  }
+
   if (!process.env.ATHENAHEALTH_CLIENT_ID || !process.env.ATHENAHEALTH_CLIENT_SECRET || !process.env.ATHENAHEALTH_TOKEN_URL) {
     throw new Error("Missing Athena env variables");
   }
@@ -34,5 +42,11 @@ export async function getToken() {
     throw new Error("No access_token received from Athena");
   }
 
-  return json;
+  // Cache the token with expiry time
+  cachedToken = {
+    access_token: json.access_token,
+    expires_at: now + json.expires_in * 1000, // expires_in usually in seconds
+  };
+
+  return cachedToken;
 }
